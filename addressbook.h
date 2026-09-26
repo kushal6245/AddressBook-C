@@ -20,7 +20,7 @@ void load_contacts(struct AddressBook *addressBook);
 void save_contacts(struct AddressBook *addressBook);
 
 void add_contact(struct AddressBook *addressBook);
-void search_contact(struct AddressBook *addressBook);
+int search_contact(struct AddressBook *addressBook, int select);
 void edit_contact(struct AddressBook *addressBook);
 void delete_contact(struct AddressBook *addressBook);
 void list_contacts(struct AddressBook *addressBook);

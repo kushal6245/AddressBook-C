@@ -8,6 +8,7 @@ void load_contacts(struct AddressBook *addressBook)
 
     if (fp == NULL)
     {
+        printf("\nError opening file\n");
         addressBook->contactCount = 0;
         return;
     }
@@ -18,7 +19,7 @@ void load_contacts(struct AddressBook *addressBook)
 
     addressBook->contactCount = 0;
 
-    while (addressBook->contactCount < 100 && fscanf(fp, "%49[^,],%14[^,],%49[^\n]\n",
+    while (addressBook->contactCount < 100 && fscanf(fp, "%49[^,],%10[^,],%49[^\n]\n",
                   addressBook->contacts[addressBook->contactCount].name,
                   addressBook->contacts[addressBook->contactCount].phone,
                   addressBook->contacts[addressBook->contactCount].email) == 3)
@@ -36,7 +37,7 @@ void save_contacts(struct AddressBook *addressBook)
 
     if (fp == NULL)
     {
-        printf("Error opening file\n");
+        printf("\nError opening file\n");
         return;
     }
 

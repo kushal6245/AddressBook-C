@@ -7,7 +7,7 @@
 
 void search_list(struct AddressBook *addressBook);
 
-void search_contact(struct AddressBook *addressBook)
+int search_contact(struct AddressBook *addressBook, int select)
 {
     int find;
     char search[50];
@@ -26,7 +26,8 @@ void search_contact(struct AddressBook *addressBook)
 
         if(find < 1 || find > 4)
         {
-            printf(RED_BOLD "Invalid input. Please try again" RESET);
+            printf(RED_BOLD "\nInvalid input. Please try again\n" RESET);
+            while(getchar() != '\n');
         } 
 
     } while(find < 1 || find > 4);
@@ -34,8 +35,8 @@ void search_contact(struct AddressBook *addressBook)
     //Return to menu
     if (find == 4)
     {
-        printf(GREEN "Returning to menu...\n" RESET);
-        return;
+        printf(GREEN "\nReturning to menu...\n" RESET);
+        return -1;
     }
     
     printf(BLUE "Enter %s: " RESET, type[find]);
@@ -75,10 +76,33 @@ void search_contact(struct AddressBook *addressBook)
     if (addressBook->ir_size == 0)
     {
         printf(RED "\nContact not found!!..\n" RESET);
-        return;
+        return -1;
+    }
+
+    if (select == 2)
+    {
+        search_list(addressBook);
+  
+        printf(GREEN "\nReturning to menu...\n" RESET);
+        sleep(1);
+        return -1;
     }
 
     search_list(addressBook);
+    
+    int contact_number;
+
+    printf(BLUE "\nEnter the sl. no. of the contact: " RESET);
+    scanf("%d", &contact_number);
+
+    if (contact_number < 1 || contact_number > addressBook->ir_size)
+    {
+        printf(RED_BOLD "Invalid number.\n" RESET);
+        while(getchar() != '\n');
+        return -1;
+    }
+
+    return addressBook->index_record[contact_number - 1];
 }
 
 
@@ -114,8 +138,4 @@ void search_list(struct AddressBook *addressBook)
     }
 
     printf("+---------+-------------------+------------------+--------------------------------+\n");
-
-    printf(GREEN "Returning to menu...\n" RESET);
-
-    sleep(1);
 }

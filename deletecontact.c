@@ -7,22 +7,12 @@
 
 void delete_contact(struct AddressBook *addressBook)
 {
-    int contact_number;
-    int index;
+    int index = search_contact(addressBook, 1);
 
-    printf(YELLOW "\nAvailable Contacts:" RESET);
-    list_contacts(addressBook);
-   
-    printf(BLUE "\nEnter the sl. number of the contact to delete: " RESET);
-    scanf("%d", &contact_number);
-
-    if (contact_number < 1 || contact_number > addressBook->contactCount)
+    if (index == -1)
     {
-        printf(RED_BOLD "Invalid contact number.\n" RESET);
         return;
     }
-
-    index = contact_number - 1;
 
     printf(YELLOW "\nContact selected for deletion:\n" RESET);
 
@@ -38,6 +28,8 @@ void delete_contact(struct AddressBook *addressBook)
 
     do
     {
+        while(getchar() != '\n');
+        
         printf(BLUE "Enter: " RESET);
         scanf("%d", &confirm);
 
@@ -65,5 +57,6 @@ void delete_contact(struct AddressBook *addressBook)
     sleep(2);
     
     save_contacts(addressBook);
-    printf(GREEN "Changes saved successfully.\n" RESET);
+    
+    printf(GREEN_BOLD "\nChanges saved successfully.\n" RESET);
 }

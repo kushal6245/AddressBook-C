@@ -24,12 +24,17 @@ int main()
 		printf("4. Delete contact\n");
 		printf("5. List all contacts\n");
         printf("6. Refresh\n");
-		printf("7. Exit\n" RESET);
-
+		printf("7. Save and Exit\n" RESET);
+        
 		sleep(1);
 		printf(BLUE "\nEnter your choice: " RESET);
 
-		scanf("%d", &choice);
+		if(scanf("%d", &choice) != 1)
+        {
+            printf(RED_BOLD "Invalid input. Please try again.\n" RESET);
+            while(getchar() != '\n');
+            continue;
+        }
 
 		switch (choice) 
 		{
@@ -52,7 +57,7 @@ int main()
                     break;
                 }
 
-				search_contact(&addressBook);
+				search_contact(&addressBook, choice);
 				break;
 
 	    	case 3:
@@ -97,7 +102,7 @@ int main()
                 
 	    	case 7:
 
-				printf(GREEN "Saving...\n" RESET);
+				printf(GREEN_BOLD "Saving...\n" RESET);
 				sleep(2);
 				printf(GREEN_BOLD "Saved Successfully!!\n\n" RESET);
 				break;
@@ -105,7 +110,9 @@ int main()
 	    	default:
 
 			    printf(RED_BOLD "Invalid input. Please try again.\n" RESET);
+                while(getchar() != '\n');
 		}
+
     } while (choice != 7);
 
     return 0;

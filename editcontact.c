@@ -8,22 +8,12 @@
 
 void edit_contact(struct AddressBook *addressBook)
 {
-    int choice;
-    int contact_number;
+    int index = search_contact(addressBook, 1);
 
-    printf(YELLOW "\nAvailable Contacts:" RESET);
-    list_contacts(addressBook);
-
-    printf(BLUE "\nEnter the sl. no. of the contact to edit: " RESET);
-    scanf("%d", &contact_number);
-
-    if (contact_number < 1 || contact_number > addressBook->contactCount)
+    if (index == -1)
     {
-        printf(RED_BOLD "Invalid contact number.\n" RESET);
         return;
     }
-
-    int index = contact_number - 1;
 
     printf(YELLOW "\nSelected Contact:\n" RESET);
 
@@ -38,10 +28,25 @@ void edit_contact(struct AddressBook *addressBook)
     printf("3. Email\n");
     printf("4. Return to menu\n" RESET);
 
-    printf(BLUE "\nEnter your choice: " RESET);
-    scanf("%d", &choice);
+    int choice;
 
-    while (getchar() != '\n');
+    do
+    {
+        printf(BLUE "\nEnter: " RESET);
+        
+        if(scanf("%d", &choice) != 1)
+        {
+            printf(RED_BOLD "Invalid input.\n" RESET);
+            while(getchar() != '\n');
+            continue;
+        }
+
+        if (choice < 1 || choice > 4)
+        {
+            printf(RED_BOLD "Invalid input.\n" RESET);
+        }
+
+    } while (choice < 1 || choice > 4);
 
     switch (choice)
     {
@@ -63,6 +68,8 @@ void edit_contact(struct AddressBook *addressBook)
 
             do
             {
+                while(getchar() != '\n');
+
                 valid = 1;
 
                 printf(BLUE "Enter new phone number: " RESET);
@@ -127,7 +134,8 @@ void edit_contact(struct AddressBook *addressBook)
             int valid = 0;
 
             do
-            {        
+            {      
+                while(getchar() != '\n');  
             
                 valid = 1;
 
@@ -242,13 +250,13 @@ void edit_contact(struct AddressBook *addressBook)
         default:
 
             printf(RED_BOLD "\nInvalid input.\n" RESET);
+            while(getchar() != '\n');
             sleep(2);
             return;
     }
 
-
     save_contacts(addressBook);
 
-    printf(GREEN "\nChanges saved successfully.\n" RESET);
+    printf(GREEN_BOLD "\nChanges saved successfully.\n" RESET);
     sleep(2);
 }
