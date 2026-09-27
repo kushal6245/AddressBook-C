@@ -142,6 +142,11 @@ void edit_contact(struct AddressBook *addressBook)
                 printf(BLUE "Enter new email: " RESET);
                 scanf("%49s", email);
 
+                for (int i = 0; email[i] != '\0'; i++)
+        		{
+            		email[i] = tolower(email[i]);
+        		}
+
                 int at_count = 0;
                 int dot_count = 0;
                 int at_position = -1;

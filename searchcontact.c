@@ -124,17 +124,11 @@ void search_list(struct AddressBook *addressBook)
         printf("|"GREEN" %-7d "RESET"|"GREEN" %-*.*s "RESET"|"GREEN" +91 %-*.*s "RESET"|"GREEN" %-*.*s "RESET"|\n",
                i + 1,
 
-               17,
-               (int)strcspn(addressBook->contacts[index].name, "\n"),
-               addressBook->contacts[index].name,
+               17, (int)strcspn(addressBook->contacts[index].name, "\n"), addressBook->contacts[index].name,
 
-               12,
-               (int)strcspn(addressBook->contacts[index].phone, "\n"),
-               addressBook->contacts[index].phone,
+               12, (int)strcspn(addressBook->contacts[index].phone, "\n"), addressBook->contacts[index].phone,
 
-               30,
-               (int)strcspn(addressBook->contacts[index].email, "\n"),
-               addressBook->contacts[index].email);
+               30, (int)strcspn(addressBook->contacts[index].email, "\n"), addressBook->contacts[index].email);
     }
 
     printf("+---------+-------------------+------------------+--------------------------------+\n");

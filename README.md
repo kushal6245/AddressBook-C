@@ -14,6 +14,13 @@ The project allows users to manage contacts and store contact information using 
 - Load existing contacts from the CSV file
 - Input validation for phone numbers and email addresses
 
+## Program Flow
+
+The application starts from the main menu and allows the user to
+add, search, list, edit, delete, and save contacts.
+
+![Address Book Flow Diagram](images/flowchart.png)
+
 ## Project Structure
 
 ```text

@@ -17,7 +17,7 @@ void list_contacts(struct AddressBook *addressBook)
     printf(YELLOW "\nTotal %d %s." RESET, addressBook->contactCount, addressBook->contactCount == 1 ? "contact" : "contacts");
     printf("\n+---------+-------------------+------------------+--------------------------------+\n");
 
-        printf("|"CYAN" %-7s "RESET"|"CYAN" %-17s "RESET"|"CYAN" %-16s "RESET"|"CYAN" %-30s "RESET"|\n", "Sl. No.", "Name", "Phone Number", "Email");
+    printf("|"CYAN" %-7s "RESET"|"CYAN" %-17s "RESET"|"CYAN" %-16s "RESET"|"CYAN" %-30s "RESET"|\n", "Sl. No.", "Name", "Phone Number", "Email");
 
     printf("+---------+-------------------+------------------+--------------------------------+\n");
 
